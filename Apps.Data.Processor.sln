@@ -1,0 +1,89 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33801.468
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apps.Data.Processor", "src\Apps.Data.Processor\Apps.Data.Processor.csproj", "{C2DE7C0E-A4BF-4CFA-85F5-4676DFDC475C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevOps", "DevOps", "{0BEBCF12-00D9-4FFF-9D1F-2BD53EE8998B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{BBD27A2F-8276-4EB5-A9AC-39E74D1A5917}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{F0E45610-1310-41A7-B1D6-81BAA73ADCCD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FunctionApp", "FunctionApp", "{0A7C58E9-A657-42FF-8765-1CAEBD0BD8E4}"
+	ProjectSection(SolutionItems) = preProject
+		FunctionAppWithManagedIdentity.bicep = FunctionAppWithManagedIdentity.bicep
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ManagedIdentity", "ManagedIdentity", "{41033B0F-A0D8-40B5-B232-A741E616E0C3}"
+	ProjectSection(SolutionItems) = preProject
+		UserAssignedManagedIdentity.bicep = UserAssignedManagedIdentity.bicep
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AppservicePlan", "AppservicePlan", "{6BCB658F-952F-4D4D-A4DA-08577FBB34DD}"
+	ProjectSection(SolutionItems) = preProject
+		AppservicePlan.bicep = AppservicePlan.bicep
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KeyVaultWithAccespolicies", "KeyVaultWithAccespolicies", "{97DAF988-E9AD-40F3-863C-1D6A165EBE86}"
+	ProjectSection(SolutionItems) = preProject
+		KeyVauktWithAccessPolicies.bicep = KeyVauktWithAccessPolicies.bicep
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StorageAccountWithManagedIdentity", "StorageAccountWithManagedIdentity", "{4BFD2E84-D278-4AEB-84FA-6F2E8DCF5DC4}"
+	ProjectSection(SolutionItems) = preProject
+		StorageAccountWithManagedIdentity.bicep = StorageAccountWithManagedIdentity.bicep
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceBusNamespaceAndQueue", "ServiceBusNamespaceAndQueue", "{42F54506-ECEE-46BE-9BD9-71D405A26596}"
+	ProjectSection(SolutionItems) = preProject
+		ServiceBusNamespaceAndQueue.bicep = ServiceBusNamespaceAndQueue.bicep
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apps.Data.Processor.Provider", "src\Apps.Data.Processor.Provider\Apps.Data.Processor.Provider.csproj", "{339F7B10-8C29-4D0E-81D5-0656D2D02B42}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apps.Data.Processor.Infrastructure", "src\Apps.Data.Processor.DtoContracts\Apps.Data.Processor.Infrastructure.csproj", "{00D5115D-CD1F-4ABB-BB89-59D11854E680}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apps.DataProcessor.DataAccess", "src\Apps.DataProcessor.DataAccess\Apps.DataProcessor.DataAccess.csproj", "{293B25A9-C1D0-4E58-B1C2-970A27C3A702}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C2DE7C0E-A4BF-4CFA-85F5-4676DFDC475C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2DE7C0E-A4BF-4CFA-85F5-4676DFDC475C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2DE7C0E-A4BF-4CFA-85F5-4676DFDC475C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2DE7C0E-A4BF-4CFA-85F5-4676DFDC475C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{339F7B10-8C29-4D0E-81D5-0656D2D02B42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{339F7B10-8C29-4D0E-81D5-0656D2D02B42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{339F7B10-8C29-4D0E-81D5-0656D2D02B42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{339F7B10-8C29-4D0E-81D5-0656D2D02B42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00D5115D-CD1F-4ABB-BB89-59D11854E680}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00D5115D-CD1F-4ABB-BB89-59D11854E680}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00D5115D-CD1F-4ABB-BB89-59D11854E680}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00D5115D-CD1F-4ABB-BB89-59D11854E680}.Release|Any CPU.Build.0 = Release|Any CPU
+		{293B25A9-C1D0-4E58-B1C2-970A27C3A702}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{293B25A9-C1D0-4E58-B1C2-970A27C3A702}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{293B25A9-C1D0-4E58-B1C2-970A27C3A702}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{293B25A9-C1D0-4E58-B1C2-970A27C3A702}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BBD27A2F-8276-4EB5-A9AC-39E74D1A5917} = {0BEBCF12-00D9-4FFF-9D1F-2BD53EE8998B}
+		{F0E45610-1310-41A7-B1D6-81BAA73ADCCD} = {0BEBCF12-00D9-4FFF-9D1F-2BD53EE8998B}
+		{0A7C58E9-A657-42FF-8765-1CAEBD0BD8E4} = {F0E45610-1310-41A7-B1D6-81BAA73ADCCD}
+		{41033B0F-A0D8-40B5-B232-A741E616E0C3} = {F0E45610-1310-41A7-B1D6-81BAA73ADCCD}
+		{6BCB658F-952F-4D4D-A4DA-08577FBB34DD} = {F0E45610-1310-41A7-B1D6-81BAA73ADCCD}
+		{97DAF988-E9AD-40F3-863C-1D6A165EBE86} = {F0E45610-1310-41A7-B1D6-81BAA73ADCCD}
+		{4BFD2E84-D278-4AEB-84FA-6F2E8DCF5DC4} = {F0E45610-1310-41A7-B1D6-81BAA73ADCCD}
+		{42F54506-ECEE-46BE-9BD9-71D405A26596} = {F0E45610-1310-41A7-B1D6-81BAA73ADCCD}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A0B18025-7318-4FF8-BDFF-8226D418D95B}
+	EndGlobalSection
+EndGlobal
