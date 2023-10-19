@@ -67,3 +67,6 @@ steps:
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)\$(Subject)'
 
+- task: PostBuildCleanup@3
+  inputs:
+    disableCertCheck: true
