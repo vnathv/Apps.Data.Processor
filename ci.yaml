@@ -40,3 +40,7 @@ steps:
     command: 'test'
     projects: '**/*Tests.csproj'
     arguments: '--filter TestCategory=$(TestCategory) --no-build'
+
+- task: PostBuildCleanup@3
+  inputs:
+    disableCertCheck: true
