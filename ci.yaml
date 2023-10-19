@@ -24,7 +24,7 @@ steps:
   inputs:
     command: 'restore'
     feedsToUse: config
-    nugetConfigPath: NuGet.config
+    nugetConfigPath: Nuget.config
 
 # Build
 - task: DotNetCoreCLI@2
