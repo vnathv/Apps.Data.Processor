@@ -14,7 +14,6 @@ stages:
   jobs:
   - job: Deploy
     displayName: 'Deploy to Dev Environment'
-    dependsOn: BuildPipeline
     steps:
     - task: DownloadPipelineArtifact@2
       inputs:
