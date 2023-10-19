@@ -17,7 +17,7 @@ stages:
     steps:
     - task: DownloadPipelineArtifact@2
       inputs:
-        artifactName: 'Artifacts\Apps.Data.Processor'
+        artifactName: 'Apps.Data.Processor'
         downloadPath: $(System.ArtifactsDirectory)
         downloadType: 'single'
         itemPattern: '**'
@@ -72,7 +72,7 @@ stages:
 resources:
   pipelines:
   - pipeline: Artifacts_Apps.Data.Processor  # Build alias to reference the specific build pipeline
-    source: Artifacts_Apps.Data.Processor  # Name of the build pipeline defined in build-pipeline.yml
+    source: Artifacts\Artifacts_Apps.Data.Processor  # Name of the build pipeline defined in build-pipeline.yml
     trigger:
       branches:
         exclude:
