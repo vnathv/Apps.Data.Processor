@@ -12,12 +12,13 @@ resources:
   clean: true
 
 steps:
+
 # GitVersion
-- task: GitVersion@5
-  displayName: GitVersion
-  inputs:
-    versionSpec: '5.x'
-    updateAssemblyInfo: false
+# - task: GitVersion@5
+#   displayName: GitVersion
+#   inputs:
+#     versionSpec: '5.x'
+#     updateAssemblyInfo: false
 
 #Install .NET SDK 7.0.x
 - task: UseDotNet@2
