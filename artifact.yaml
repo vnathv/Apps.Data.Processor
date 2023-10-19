@@ -13,7 +13,7 @@ resources:
 
 steps:
 # GitVersion
-- task: gittools.gitversion.gitversion-task.GitVersion@5
+- task: GitVersion@5
   displayName: GitVersion
   inputs:
     updateAssemblyInfo: false
