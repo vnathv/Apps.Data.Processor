@@ -72,7 +72,7 @@ stages:
 
 resources:
   pipelines:
-  - pipeline: ArtifactsAppsDataProcessor  # Build alias to reference the specific build pipeline
+  - pipeline: DataProcessor  # Build alias to reference the specific build pipeline
     source: Artifacts\Apps.Data.Processor  # Name of the build pipeline defined in build-pipeline.yml
     trigger:
       branches:
