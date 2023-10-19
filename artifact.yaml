@@ -25,7 +25,7 @@ steps:
   displayName: 'Use .NET SDK 7.0.x'
   inputs:
       packageType: sdk
-      version: 6.0.x
+      version: 7.0.x
       installationPath: $(Agent.ToolsDirectory)/dotnet
 
 # Restore
