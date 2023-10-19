@@ -8,6 +8,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevOps", "DevOps", "{0BEBCF12-00D9-4FFF-9D1F-2BD53EE8998B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{BBD27A2F-8276-4EB5-A9AC-39E74D1A5917}"
+	ProjectSection(SolutionItems) = preProject
+		artifact.yaml = artifact.yaml
+		ci.yaml = ci.yaml
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{F0E45610-1310-41A7-B1D6-81BAA73ADCCD}"
 EndProject
@@ -47,6 +51,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apps.Data.Processor.Infrast
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apps.DataProcessor.DataAccess", "src\Apps.DataProcessor.DataAccess\Apps.DataProcessor.DataAccess.csproj", "{293B25A9-C1D0-4E58-B1C2-970A27C3A702}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{20248C44-B085-4444-9ACC-323234638912}"
+	ProjectSection(SolutionItems) = preProject
+		Nuget.config = Nuget.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{77ECEA83-3164-4D6A-B916-7AF8A4AF21BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AppServicePlan", "AppServicePlan", "{9C0149B0-5527-40B7-B621-F57C7E8483DA}"
+	ProjectSection(SolutionItems) = preProject
+		AppServicePlan.yaml = AppServicePlan.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,6 +98,8 @@ Global
 		{97DAF988-E9AD-40F3-863C-1D6A165EBE86} = {F0E45610-1310-41A7-B1D6-81BAA73ADCCD}
 		{4BFD2E84-D278-4AEB-84FA-6F2E8DCF5DC4} = {F0E45610-1310-41A7-B1D6-81BAA73ADCCD}
 		{42F54506-ECEE-46BE-9BD9-71D405A26596} = {F0E45610-1310-41A7-B1D6-81BAA73ADCCD}
+		{77ECEA83-3164-4D6A-B916-7AF8A4AF21BF} = {0BEBCF12-00D9-4FFF-9D1F-2BD53EE8998B}
+		{9C0149B0-5527-40B7-B621-F57C7E8483DA} = {77ECEA83-3164-4D6A-B916-7AF8A4AF21BF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A0B18025-7318-4FF8-BDFF-8226D418D95B}
