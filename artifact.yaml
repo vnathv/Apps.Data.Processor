@@ -61,6 +61,7 @@ steps:
     zipAfterPublish: false
     solution: src/$(ProjectName)/$(ProjectName).csproj
     arguments: '-o "$(Build.ArtifactStagingDirectory)\$(Subject)" /p:Version=1.1 -c $(BuildConfiguration)'
+    #$(GitVersion.NugetVersionV2) -- This is not working, which needs to be investigated hence hardcoded to 1.1
 
 # Publish Artifacts
 - task: PublishBuildArtifacts@1
