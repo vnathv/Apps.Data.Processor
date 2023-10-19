@@ -18,9 +18,9 @@ steps:
   inputs:
     updateAssemblyInfo: false
 
-#Install .NET SDK 6.0.x
+#Install .NET SDK 7.0.x
 - task: UseDotNet@2
-  displayName: 'Use .NET SDK 6.0.x'
+  displayName: 'Use .NET SDK 7.0.x'
   inputs:
       packageType: sdk
       version: 6.0.x
@@ -32,7 +32,7 @@ steps:
   inputs:
     command: 'restore'
     feedsToUse: config
-    nugetConfigPath: NuGet.config
+    nugetConfigPath: Nuget.config
 
 # Build
 - task: DotNetCoreCLI@2
@@ -66,7 +66,3 @@ steps:
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)\$(Subject)'
 
-# Clean Agent Directories
-- task: mspremier.PostBuildCleanup.PostBuildCleanup-task.PostBuildCleanup@3
-  displayName: 'Clean Agent Directories'
-  condition: always()
