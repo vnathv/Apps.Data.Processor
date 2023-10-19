@@ -5,6 +5,7 @@ variables:
   ProjectName: 'Apps.Data.Processor'
   Subject: 'AppsDataProcessor'
   TestCategory: 'CI'
+  GIT_SSL_NO_VERIFY: true
 
 # Clear Before Build
 resources:
