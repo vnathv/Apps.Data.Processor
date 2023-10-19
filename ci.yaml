@@ -40,9 +40,3 @@ steps:
     command: 'test'
     projects: '**/*Tests.csproj'
     arguments: '--filter TestCategory=$(TestCategory) --no-build'
-
-#Clean Agent Directories
-- task: mspremier.PostBuildCleanup.PostBuildCleanup-task.PostBuildCleanup@2
-  displayName: 'Clean Agent Directories'
-
-  condition: always()
