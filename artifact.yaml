@@ -5,7 +5,6 @@ variables:
   ProjectName: 'Apps.Data.Processor'
   Subject: 'AppsDataProcessor'
   TestCategory: 'CI'
-  GIT_SSL_NO_VERIFY: true
 
 # Clear Before Build
 resources:
@@ -43,7 +42,7 @@ steps:
   inputs:
     command: 'build'
     configuration: '$(BuildConfiguration)'
-    arguments: '-p:Version=$(GitVersion.NugetVersionV2) -c $(BuildConfiguration) --no-restore'
+    arguments: '-p:Version=1.1 -c $(BuildConfiguration) --no-restore'
 
 #copy Bicep Files
 - task: CopyFiles@2
@@ -61,7 +60,7 @@ steps:
     publishWebProjects: false
     zipAfterPublish: false
     solution: src/$(ProjectName)/$(ProjectName).csproj
-    arguments: '-o "$(Build.ArtifactStagingDirectory)\$(Subject)" /p:Version=$(GitVersion.NugetVersionV2) -c $(BuildConfiguration)'
+    arguments: '-o "$(Build.ArtifactStagingDirectory)\$(Subject)" /p:Version=1.1 -c $(BuildConfiguration)'
 
 # Publish Artifacts
 - task: PublishBuildArtifacts@1
