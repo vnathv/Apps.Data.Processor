@@ -31,7 +31,7 @@ stages:
         subscriptionId: '22969fb4-b739-47d2-b862-40bbf4e40026'
         resourceGroupName: 'terraform-poc'
         location: 'West Europe'
-        csmFile: '$(System.DefaultWorkingDirectory)/Apps-Data-Processor/drop/AppservicePlan.bicep'
+        csmFile: '$(System.DefaultWorkingDirectory)/ArtifactsAppsDataProcessor/drop/AppservicePlan.bicep'
         overrideParameters: '-appServicePlanName Terraform-POC'
 
 #- stage: QA
@@ -72,7 +72,7 @@ stages:
 
 resources:
   pipelines:
-  - pipeline: Artifacts_Apps.Data.Processor  # Build alias to reference the specific build pipeline
+  - pipeline: ArtifactsAppsDataProcessor  # Build alias to reference the specific build pipeline
     source: Artifacts\Apps.Data.Processor  # Name of the build pipeline defined in build-pipeline.yml
     trigger:
       branches:
