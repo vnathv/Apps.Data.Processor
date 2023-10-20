@@ -25,7 +25,7 @@ namespace Apps.DataProcessor.DataAccess.Repositories
             var LastUpdatedDateTime = DateTime.Now.AddMinutes(-15);
 
             var users = Context.Users
-                .FromSql($"EXECUTE dbo.GetMostPopularBlogsForUser {LastUpdatedDateTime}")
+                .FromSqlRaw($"EXECUTE dbo.GetMostPopularBlogsForUser {LastUpdatedDateTime}")
                 .ToList();
 
             return users;
