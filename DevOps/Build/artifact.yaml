@@ -46,7 +46,7 @@ steps:
 
 #copy Bicep Files
 - task: CopyFiles@2
-  displayName: 'Copy ServiceBusTopicSubscription.json'
+  displayName: 'Copy bicep files'
   inputs:
     sourceFolder: '.'
     contents: '**\DevOps\**\*.bicep'
