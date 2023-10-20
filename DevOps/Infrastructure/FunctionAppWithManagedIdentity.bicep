@@ -1,6 +1,6 @@
 param appName string
 param appServicePlanName string
-param alwaysOn bool = true
+param alwaysOn bool = false
 param storageAccountName string
 param applicationInsightsInstrumentationKey string
 param extensionVersion string = '~4'
@@ -25,6 +25,7 @@ resource app 'Microsoft.Web/sites@2018-02-01' = {
     use32BitWorkerProcess: false
     httpsOnly: true
     siteConfig: {
+      alwaysOn: alwaysOn
       appSettings: [
         {
           name: 'FUNCTIONS_WORKER_RUNTIME'
