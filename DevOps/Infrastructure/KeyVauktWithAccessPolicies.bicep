@@ -14,7 +14,7 @@ param enabledForTemplateDeployment bool = false
 
 param tenantId string = subscription().tenantId
 
-@description('Specifies the object ID of a user, service principal or security group in the Azure Active Directory tenant for the vault. The object ID must be unique for the list of access policies. Get it by using Get-AzADUser or Get-AzADServicePrincipal cmdlets.')
+@description('Service principal Id (Here managed identity ID)')
 param objectId string
 
 @description('Specifies the permissions to keys in the vault. Valid values are: all, encrypt, decrypt, wrapKey, unwrapKey, sign, verify, get, list, create, update, import, delete, backup, restore, recover, and purge.')
@@ -39,13 +39,6 @@ param secretsPermissions array = [
   'premium'
 ])
 param skuName string = 'standard'
-
-@description('Specifies the name of the secret that you want to create.')
-param secretName string
-
-@description('Specifies the value of the secret that you want to create.')
-@secure()
-param secretValue string
 
 resource kv 'Microsoft.KeyVault/vaults@2021-11-01-preview' = {
   name: keyVaultName
