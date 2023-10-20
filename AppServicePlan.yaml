@@ -14,15 +14,15 @@ stages:
   jobs:
   - job: Deploy
     displayName: 'Deploy to Dev Environment'
-    dependsOn: BuildPipeline
     steps:
     - task: DownloadPipelineArtifact@2
       inputs:
-        artifactName: 'Artifacts\Apps.Data.Processor'
-        downloadPath: $(System.ArtifactsDirectory)
-        downloadType: 'single'
-        itemPattern: '**'
-        artifactAlias: 'drop'
+        buildType: 'specific'
+        project: 'b16c1ef6-dfcd-4618-8e81-dc8ab13dbf2f'
+        definition: '2'
+        buildVersionToDownload: 'latest'
+        artifactName: 'Artifacts_Apps.Data.Processor'
+        targetPath: '$(System.ArtifactsDirectory)'
 
     - task: AzureResourceManagerTemplateDeployment@3
       displayName: 'ARM Template deployment: Resource Group scope'
@@ -31,7 +31,7 @@ stages:
         subscriptionId: '22969fb4-b739-47d2-b862-40bbf4e40026'
         resourceGroupName: 'terraform-poc'
         location: 'West Europe'
-        csmFile: '$(System.DefaultWorkingDirectory)/_Apps.Data.Processor/drop/AppservicePlan.bicep'
+        csmFile: '$(System.DefaultWorkingDirectory)/Artifacts_Apps.Data.Processor/drop/AppservicePlan.bicep'
         overrideParameters: '-appServicePlanName Terraform-POC'
 
 #- stage: QA
@@ -72,8 +72,8 @@ stages:
 
 resources:
   pipelines:
-  - pipeline: _Apps.Data.Processor  # Build alias to reference the specific build pipeline
-    source: Artifacts\Apps.Data.Processor  # Name of the build pipeline defined in build-pipeline.yml
+  - pipeline: Artifacts_Apps.Data.Processor  # Build alias to reference the specific build pipeline
+    source: Artifacts\Artifacts_Apps.Data.Processor  # Name of the build pipeline defined in build-pipeline.yml
     trigger:
       branches:
         exclude:
