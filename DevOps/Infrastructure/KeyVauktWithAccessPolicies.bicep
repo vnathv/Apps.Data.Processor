@@ -21,7 +21,7 @@ param objectId string
 param keysPermissions array = [
   'get'
   'list'
-  'set'
+  'create'
 ]
 
 @description('Specifies the permissions to secrets in the vault. Valid values are: all, get, list, set, delete, backup, restore, recover, and purge.')
