@@ -60,7 +60,7 @@ stages:
       inputs:
         sourceFolder: '.'
         contents: '**\DevOps\**\*.bicep'
-        targetFolder: '$(Build.ArtifactStagingDirectory)\DevOps'
+        targetFolder: '$(Build.ArtifactStagingDirectory)'
 
     # Publish
     - task: DotNetCoreCLI@2
