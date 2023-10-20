@@ -79,8 +79,8 @@ stages:
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)\$(Subject)'
       
-- stage: Deploy
-  displayName: Deploy
+- stage: Dev
+  displayName: Dev
   dependsOn: Build
   condition: succeeded()
   jobs:
