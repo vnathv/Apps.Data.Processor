@@ -49,7 +49,7 @@ steps:
   displayName: 'Copy ServiceBusTopicSubscription.json'
   inputs:
     sourceFolder: '.'
-    contents: '*.bicep'
+    contents: '**\DevOps\**\*.bicep'
     targetFolder: '$(Build.ArtifactStagingDirectory)\$(Subject)'
 
 # Publish
