@@ -10,61 +10,71 @@ variables:
 resources:
 - repo: self
   clean: true
+stages:
+- stage: Build
+  displayName: Build stage
+  
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      name: Vijay
+    
 
-steps:
+    steps:
 
-# # GitVersion
-# - task: GitVersion@5
-#   displayName: GitVersion
-#   inputs:
-#     versionSpec: '5.x'
-#     updateAssemblyInfo: false
+    # # GitVersion
+    # - task: GitVersion@5
+    #   displayName: GitVersion
+    #   inputs:
+    #     versionSpec: '5.x'
+    #     updateAssemblyInfo: false
 
-#Install .NET SDK 7.0.x
-- task: UseDotNet@2
-  displayName: 'Use .NET SDK 7.0.x'
-  inputs:
-      packageType: sdk
-      version: 7.0.x
-      installationPath: $(Agent.ToolsDirectory)/dotnet
+    #Install .NET SDK 7.0.x
+    - task: UseDotNet@2
+      displayName: 'Use .NET SDK 7.0.x'
+      inputs:
+          packageType: sdk
+          version: 7.0.x
+          installationPath: $(Agent.ToolsDirectory)/dotnet
 
-# Restore
-- task: DotNetCoreCLI@2
-  displayName: Nuget restore
-  inputs:
-    command: 'restore'
-    feedsToUse: config
-    nugetConfigPath: Nuget.config
+    # Restore
+    - task: DotNetCoreCLI@2
+      displayName: Nuget restore
+      inputs:
+        command: 'restore'
+        feedsToUse: config
+        nugetConfigPath: Nuget.config
 
-# Build
-- task: DotNetCoreCLI@2
-  displayName: Build
-  inputs:
-    command: 'build'
-    configuration: '$(BuildConfiguration)'
-    arguments: '-p:Version=1.1 -c $(BuildConfiguration) --no-restore'
+    # Build
+    - task: DotNetCoreCLI@2
+      displayName: Build
+      inputs:
+        command: 'build'
+        configuration: '$(BuildConfiguration)'
+        arguments: '-p:Version=1.1 -c $(BuildConfiguration) --no-restore'
 
-#copy Bicep Files
-- task: CopyFiles@2
-  displayName: 'Copy bicep files'
-  inputs:
-    sourceFolder: '.'
-    contents: '**\DevOps\**\*.bicep'
-    targetFolder: '$(Build.ArtifactStagingDirectory)\$(Subject)'
+    #copy Bicep Files
+    - task: CopyFiles@2
+      displayName: 'Copy bicep files'
+      inputs:
+        sourceFolder: '.'
+        contents: '**\DevOps\**\*.bicep'
+        targetFolder: '$(Build.ArtifactStagingDirectory)\$(Subject)'
 
-# Publish
-- task: DotNetCoreCLI@2
-  displayName: 'Publish'
-  inputs:
-    command: 'publish'
-    publishWebProjects: false
-    zipAfterPublish: false
-    solution: src/$(ProjectName)/$(ProjectName).csproj
-    arguments: '-o "$(Build.ArtifactStagingDirectory)\$(Subject)" /p:Version=1.1 -c $(BuildConfiguration)'
-    #$(GitVersion.NugetVersionV2) -- This is not working, which needs to be investigated hence hardcoded to 1.1
+    # Publish
+    - task: DotNetCoreCLI@2
+      displayName: 'Publish'
+      inputs:
+        command: 'publish'
+        publishWebProjects: false
+        zipAfterPublish: false
+        solution: src/$(ProjectName)/$(ProjectName).csproj
+        arguments: '-o "$(Build.ArtifactStagingDirectory)\$(Subject)" /p:Version=1.1 -c $(BuildConfiguration)'
+        #$(GitVersion.NugetVersionV2) -- This is not working, which needs to be investigated hence hardcoded to 1.1
 
-# Publish Artifacts
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: drop'
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)\$(Subject)'
+    # Publish Artifacts
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Artifact: drop'
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)\$(Subject)'
