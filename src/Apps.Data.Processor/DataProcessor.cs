@@ -8,7 +8,7 @@ namespace Apps.Data.Processor
     public class DataProcessor
     {
         [FunctionName("DataProcessor")]
-        public void Run([TimerTrigger("*/2 * * * *")]TimerInfo myTimer, ILogger log)
+        public void Run([TimerTrigger("*/10 * * * *")]TimerInfo myTimer, ILogger log)
         {
             log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
         }
