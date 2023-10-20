@@ -1,18 +1,18 @@
 param appName string
-param location string = resourceGroup().location
 param appServicePlanName string
 param alwaysOn bool = true
 param storageAccountName string
 param applicationInsightsInstrumentationKey string
-param resourceGroup string = resourceGroup().name
 param extensionVersion string = '~4'
 param workerRuntime string = 'dotnet'
 param identityName string
+param resourceGrouplocation string = resourceGroup().location
+param resourceGroupName string = resourceGroup().name
 
 resource app 'Microsoft.Web/sites@2018-02-01' = {
   kind: 'functionapp'
   name: appName
-  location: location
+  location: resourceGrouplocation
   identity: {
     type: 'UserAssigned'
     userAssignedIdentities: {
@@ -21,7 +21,7 @@ resource app 'Microsoft.Web/sites@2018-02-01' = {
   }
   properties: {
     clientAffinityEnabled: false
-    serverFarmId: '/subscriptions/${subscription().subscriptionId}/resourcegroups/${resourceGroup}/providers/Microsoft.Web/serverfarms/${appServicePlanName}'
+    serverFarmId: '/subscriptions/${subscription().subscriptionId}/resourcegroups/${resourceGroupName}/providers/Microsoft.Web/serverfarms/${appServicePlanName}'
     use32BitWorkerProcess: false
     httpsOnly: true
     siteConfig: {
