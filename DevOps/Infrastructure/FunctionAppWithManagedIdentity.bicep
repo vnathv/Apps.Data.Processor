@@ -25,7 +25,6 @@ resource app 'Microsoft.Web/sites@2018-02-01' = {
     use32BitWorkerProcess: false
     httpsOnly: true
     siteConfig: {
-      alwaysOn: alwaysOn
       appSettings: [
         {
           name: 'FUNCTIONS_WORKER_RUNTIME'
