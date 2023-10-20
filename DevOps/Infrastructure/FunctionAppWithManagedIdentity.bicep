@@ -1,5 +1,5 @@
 param appName string
-param location string = 'West Europe'
+param location string = resourceGroup().location
 param appServicePlanName string
 param alwaysOn bool = true
 param storageAccountName string
