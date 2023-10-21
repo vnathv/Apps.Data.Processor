@@ -63,6 +63,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AppServicePlan", "AppServic
 		AppServicePlan.yaml = AppServicePlan.yaml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SqlServer", "SqlServer", "{CE63F9BC-7E03-452D-9532-2AA1DEAA2604}"
+	ProjectSection(SolutionItems) = preProject
+		SqlServer.bicep = SqlServer.bicep
+		SqlServerDatabase.bicep = SqlServerDatabase.bicep
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -100,6 +106,7 @@ Global
 		{42F54506-ECEE-46BE-9BD9-71D405A26596} = {F0E45610-1310-41A7-B1D6-81BAA73ADCCD}
 		{77ECEA83-3164-4D6A-B916-7AF8A4AF21BF} = {0BEBCF12-00D9-4FFF-9D1F-2BD53EE8998B}
 		{9C0149B0-5527-40B7-B621-F57C7E8483DA} = {77ECEA83-3164-4D6A-B916-7AF8A4AF21BF}
+		{CE63F9BC-7E03-452D-9532-2AA1DEAA2604} = {F0E45610-1310-41A7-B1D6-81BAA73ADCCD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A0B18025-7318-4FF8-BDFF-8226D418D95B}
