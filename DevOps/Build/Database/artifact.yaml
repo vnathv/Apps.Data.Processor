@@ -9,9 +9,7 @@ variables:
   value: AppsDataProcessorDatabase
 - name: Database
   value: Vij_Main
-- group: 'Dev'
- 
- 
+- group: 'Dev' 
  
 # Clear Before Build
 resources:
