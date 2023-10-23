@@ -45,12 +45,12 @@ stages:
         nugetConfigPath: Nuget.config
 
     - task: MSBuild@1
-      displayName: Build
+      displayName: 'Build database dacpac'
       inputs:
-        solution: '**/*.sln'
+        solution: src/$(ProjectName)/Apps.DataProcessor.Database.sqlproj
         platform: '$(BuildPlatform)'
-        configuration: '$(BuildConfiguration)'
-        msbuildArguments: '-p:Version=1.1 -c $(BuildConfiguration) --no-restore'
+        configuration: Release
+        msbuildArguments: '/p:OutputPath="$(Build.SourcesDirectory)\output"'
     # Build
     # - task: DotNetCoreCLI@2
     #   displayName: Build
