@@ -71,5 +71,38 @@ stages:
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)\deploy'
 
-  
+- stage: Dev
+  displayName: Dev
+  dependsOn: Build
+  condition: succeeded()
+  jobs:
+    - job: Deployment
+    - deployment: Deploy
+      displayName: Deploy
+      environment: Development
+      pool:
+       name: Vijay
+      strategy:
+       runOnce:
+         deploy:
+           steps:
+             - task: ExtractFiles@1
+               displayName: 'Extract Files'
+               inputs:
+                archiveFilePatterns: 'drop/*.zip'
+                destinationFolder: '$(System.DefaultWorkingDirectory)\extract'
+                cleanDestinationFolder: true
+                overwriteExistingFiles: false
+             - task: SqlDacpacDeploymentOnMachineGroup@0
+               inputs:
+                 TaskType: 'dacpac'
+                 DacpacFile: '$(System.DefaultWorkingDirectory)\extract\database-master\Apps.DataProcessor.Database.dacpac'
+                 TargetMethod: 'server'
+                 ServerName: '$(ServerName)'
+                 DatabaseName: '$(Database)'
+                 AuthScheme: 'sqlServerAuthentication'
+                 SqlUsername: '$(SqlServerLogin)'
+                 SqlPassword: '$(SqlServerPassword)'
+                 PublishProfile: '$(PublishProfile)'
+
  
