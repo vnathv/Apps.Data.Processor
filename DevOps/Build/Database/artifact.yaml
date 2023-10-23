@@ -44,13 +44,20 @@ stages:
         feedsToUse: config
         nugetConfigPath: Nuget.config
 
-    # Build
-    - task: DotNetCoreCLI@2
+    - task: MSBuild@1
       displayName: Build
       inputs:
-        command: 'build'
-        projects: 'src/$(ProjectName)/Apps.DataProcessor.Database.sqlproj'
-        arguments: '-p:Version=1.1 -c $(BuildConfiguration) --no-restore'
+        solution: '**/*.sln'
+        platform: '$(BuildPlatform)'
+        configuration: '$(BuildConfiguration)'
+        msbuildArguments: '-p:Version=1.1 -c $(BuildConfiguration) --no-restore'
+    # Build
+    # - task: DotNetCoreCLI@2
+    #   displayName: Build
+    #   inputs:
+    #     command: 'build'
+    #     projects: 'src/$(ProjectName)/Apps.DataProcessor.Database.sqlproj'
+    #     arguments: '-p:Version=1.1 -c $(BuildConfiguration) --no-restore'
 
     #copy incremental deploy xml
     - task: CopyFiles@2
