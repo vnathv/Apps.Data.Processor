@@ -100,7 +100,7 @@ stages:
                    dir
                    
                    echo 'Second'
-                   cd $(Build.ArtifactStagingDirectory)\deploy
+                   cd $(Build.ArtifactStagingDirectory)\deploy\extract
                    dir
              - task: SqlDacpacDeploymentOnMachineGroup@0
                inputs:
