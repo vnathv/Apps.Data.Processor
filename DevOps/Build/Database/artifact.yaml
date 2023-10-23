@@ -77,10 +77,9 @@ stages:
   dependsOn: Build
   condition: succeeded()
   jobs:
-    - job: Deployment
     - deployment: Deploy
       displayName: Deploy
-      environment: Development
+      environment: 'Development'
       pool:
        name: Vijay
       strategy:
