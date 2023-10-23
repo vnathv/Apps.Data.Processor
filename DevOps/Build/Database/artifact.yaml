@@ -96,11 +96,14 @@ stages:
              - task: CmdLine@2
                inputs:
                  script: |
+                   cd $(Pipeline.Workspace)/drop
+                   dir
+                   echo 'first'
                    cd (System.DefaultWorkingDirectory)
                    dir
                    
                    echo 'Second'
-                   cd $(Build.ArtifactStagingDirectory)\deploy\extract
+                   cd $(Build.ArtifactStagingDirectory)
                    dir
              - task: SqlDacpacDeploymentOnMachineGroup@0
                inputs:
