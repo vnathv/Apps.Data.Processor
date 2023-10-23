@@ -93,6 +93,15 @@ stages:
                 destinationFolder: '$(System.DefaultWorkingDirectory)\extract'
                 cleanDestinationFolder: true
                 overwriteExistingFiles: false
+             - task: CmdLine@2
+               inputs:
+                 script: |
+                   cd (System.DefaultWorkingDirectory)
+                   dir
+                   
+                   echo 'Second'
+                   cd $(Build.ArtifactStagingDirectory)\deploy
+                   dir
              - task: SqlDacpacDeploymentOnMachineGroup@0
                inputs:
                  TaskType: 'dacpac'
