@@ -3,6 +3,7 @@ variables:
   BuildPlatform: 'any cpu'
   ProjectName: 'Apps.DataProcessor.Database'
   Subject: 'AppsDataProcessorDatabase'
+  Database: 'Vij_Main'
 
 # Clear Before Build
 resources:
@@ -98,11 +99,11 @@ stages:
                  TaskType: 'dacpac'
                  DacpacFile: '$(System.DefaultWorkingDirectory)\extract\database-master\Apps.DataProcessor.Database.dacpac'
                  TargetMethod: 'server'
-                 ServerName: '$(ServerName)'
+                 ServerName: '$(SqlServerName)'
                  DatabaseName: '$(Database)'
                  AuthScheme: 'sqlServerAuthentication'
                  SqlUsername: '$(SqlServerLogin)'
                  SqlPassword: '$(SqlServerPassword)'
-                 PublishProfile: '$(PublishProfile)'
+                 PublishProfile: '$(System.DefaultWorkingDirectory)\extract\database-master\IncrementalDeploy.xml'
 
  
