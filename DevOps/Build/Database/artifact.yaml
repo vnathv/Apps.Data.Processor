@@ -43,6 +43,13 @@ stages:
         command: 'restore'
         feedsToUse: config
         nugetConfigPath: Nuget.config
+        
+    - task: CopyFiles@2
+      displayName: 'Copy files'
+      inputs:
+        sourceFolder: '.'
+        contents: 'IncrementalDeploy.xml'
+        targetFolder: '$(Build.SourcesDirectory)\output'
 
     - task: MSBuild@1
       displayName: 'Build database dacpac'
@@ -51,37 +58,18 @@ stages:
         platform: '$(BuildPlatform)'
         configuration: Release
         msbuildArguments: '/p:OutputPath="$(Build.SourcesDirectory)\output"'
-    # Build
-    # - task: DotNetCoreCLI@2
-    #   displayName: Build
-    #   inputs:
-    #     command: 'build'
-    #     projects: 'src/$(ProjectName)/Apps.DataProcessor.Database.sqlproj'
-    #     arguments: '-p:Version=1.1 -c $(BuildConfiguration) --no-restore'
-
-    #copy incremental deploy xml
-    - task: CopyFiles@2
-      displayName: 'Copy files'
+    
+    - task: ArchiveFiles@1
+      displayName: 'Archive files'
       inputs:
-        sourceFolder: '.'
-        contents: 'IncrementalDeploy.xml'
-        targetFolder: '$(Build.ArtifactStagingDirectory)\$(Subject)'
-
-    # Publish
-    - task: DotNetCoreCLI@2
-      displayName: 'Publish'
-      inputs:
-        command: 'publish'
-        publishWebProjects: false
-        projects: 'src/$(ProjectName)/Apps.DataProcessor.Database.sqlproj'
-        arguments: '-o "$(Build.ArtifactStagingDirectory)\$(Subject)" /p:Version=1.1 -c $(BuildConfiguration)'
-        #$(GitVersion.NugetVersionV2) -- This is not working, which needs to be investigated hence hardcoded to 1.1
-
-    # Publish Artifacts
+        rootFolder: '$(Build.SourcesDirectory)\output'
+        includeRootFolder: false
+        archiveFile: '$(Build.ArtifactStagingDirectory)\deploy\database-master.zip'
+    
     - task: PublishBuildArtifacts@1
       displayName: 'Publish Artifact: drop'
       inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)\$(Subject)'
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)\deploy'
 
   
  
