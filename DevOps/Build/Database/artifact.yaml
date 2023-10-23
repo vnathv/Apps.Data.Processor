@@ -100,16 +100,17 @@ stages:
                 cleanDestinationFolder: true
                 overwriteExistingFiles: false
 
-             - task: SqlDacpacDeploymentOnMachineGroup@0
+             - task: SqlAzureDacpacDeployment@1
                inputs:
-                 TaskType: 'dacpac'
-                 DacpacFile: '$(System.DefaultWorkingDirectory)\database\extract\Apps.DataProcessor.Database.dacpac'
-                 TargetMethod: 'server'
+                 azureSubscription: 'Vijay'
+                 AuthenticationType: 'server'
                  ServerName: '$(SqlServerName)'
                  DatabaseName: '$(Database)'
-                 AuthScheme: 'sqlServerAuthentication'
                  SqlUsername: '$(SqlServerLogin)'
                  SqlPassword: '$(SqlServerPassword)'
+                 deployType: 'DacpacTask'
+                 DeploymentAction: 'Publish'
+                 DacpacFile: '$(System.DefaultWorkingDirectory)\database\extract\Apps.DataProcessor.Database.dacpac'
                  PublishProfile: '$(System.DefaultWorkingDirectory)\database\extract\IncrementalDeploy.xml'
-
+                 IpDetectionMethod: 'AutoDetect'
  
