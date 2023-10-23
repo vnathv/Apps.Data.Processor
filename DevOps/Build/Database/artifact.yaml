@@ -2,7 +2,7 @@ variables:
   BuildConfiguration: 'release'
   BuildPlatform: 'any cpu'
   ProjectName: 'Apps.DataProcessor.Database'
-  Subject: 'AppsDataProcessor'
+  Subject: 'AppsDataProcessorDatabase'
 
 # Clear Before Build
 resources:
@@ -49,7 +49,7 @@ stages:
       displayName: Build
       inputs:
         command: 'build'
-        configuration: '$(BuildConfiguration)'
+        projects: 'src/$(ProjectName)/Apps.DataProcessor.Database.sqlproj'
         arguments: '-p:Version=1.1 -c $(BuildConfiguration) --no-restore'
 
     #copy incremental deploy xml
@@ -66,8 +66,7 @@ stages:
       inputs:
         command: 'publish'
         publishWebProjects: false
-        zipAfterPublish: true
-        solution: src/$(ProjectName)/$(ProjectName).csproj
+        projects: 'src/$(ProjectName)/Apps.DataProcessor.Database.sqlproj'
         arguments: '-o "$(Build.ArtifactStagingDirectory)\$(Subject)" /p:Version=1.1 -c $(BuildConfiguration)'
         #$(GitVersion.NugetVersionV2) -- This is not working, which needs to be investigated hence hardcoded to 1.1
 
