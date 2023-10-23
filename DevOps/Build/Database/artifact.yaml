@@ -89,7 +89,7 @@ stages:
              - task: ExtractFiles@1
                displayName: 'Extract Files'
                inputs:
-                archiveFilePatterns: 'drop/*.zip'
+                archiveFilePatterns: '**/*.zip'
                 destinationFolder: '$(System.DefaultWorkingDirectory)\extract'
                 cleanDestinationFolder: true
                 overwriteExistingFiles: false
