@@ -1,10 +1,18 @@
 variables:
-  BuildConfiguration: 'release'
-  BuildPlatform: 'any cpu'
-  ProjectName: 'Apps.DataProcessor.Database'
-  Subject: 'AppsDataProcessorDatabase'
-  Database: 'Vij_Main'
-
+- name: BuildConfiguration
+  value: 'release'
+- name: BuildPlatform
+  value: 'any cpu'
+- name: ProjectName
+  value: 'Apps.DataProcessor.Database'
+- name: 'Subject'
+  value: AppsDataProcessorDatabase
+- name: Database
+  value: Vij_Main
+- group: 'Dev'
+ 
+ 
+ 
 # Clear Before Build
 resources:
 - repo: self
