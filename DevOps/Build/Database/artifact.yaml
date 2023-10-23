@@ -99,18 +99,7 @@ stages:
                 destinationFolder: '$(System.DefaultWorkingDirectory)\database\extract'
                 cleanDestinationFolder: true
                 overwriteExistingFiles: false
-             - task: CmdLine@2
-               inputs:
-                 script: |
-                   cd $(Pipeline.Workspace)/drop
-                   dir
-                   echo 'first'
-                   cd $(System.DefaultWorkingDirectory)\database\extract
-                   dir
-                   
-                   echo 'Second'
-                   cd $(Build.ArtifactStagingDirectory)
-                   dir
+
              - task: SqlDacpacDeploymentOnMachineGroup@0
                inputs:
                  TaskType: 'dacpac'
