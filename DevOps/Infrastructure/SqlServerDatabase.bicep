@@ -1,6 +1,5 @@
 param serverName string
 param databaseName string
-param location string = resourceGroup().location
 
 @allowed([
   'Free'
@@ -9,8 +8,6 @@ param location string = resourceGroup().location
   'Premium'
 ])
 param edition string = 'Free'
-
-
 
 
 resource database 'Microsoft.Sql/servers/databases@2019-06-01-preview' = {
