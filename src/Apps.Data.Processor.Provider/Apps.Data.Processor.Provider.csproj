@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Apps.Data.Processor.DtoContracts\Apps.Data.Processor.Infrastructure.csproj" />
+    <ProjectReference Include="..\Apps.Dataprocessor.Common\Apps.Dataprocessor.Common.csproj" />
     <ProjectReference Include="..\Apps.DataProcessor.DataAccess\Apps.DataProcessor.DataAccess.csproj" />
   </ItemGroup>
 

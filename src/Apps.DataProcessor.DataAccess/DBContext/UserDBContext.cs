@@ -5,11 +5,11 @@ namespace Apps.DataProcessor.DataAccess.DBContext
 {
     public class UserDBContext : DbContext
     {
-        public UserDBContext(DbContextOptions options) : base(options)
+        public UserDBContext(DbContextOptions<UserDBContext> options) : base(options)
         {
             
         }
 
-        internal DbSet<User> Users { get; set; }
+        internal DbSet<UserRecord> Users { get; set; }
     }
 }

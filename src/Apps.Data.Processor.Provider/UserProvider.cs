@@ -1,23 +1,24 @@
 ﻿using Apps.Data.Processor.Infrastructure;
 using Apps.Data.Processor.Provider.Interface;
+using Apps.Dataprocessor.Common.Interfaces;
 using Apps.DataProcessor.DataAccess.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AutoMapper;
 
 namespace Apps.Data.Processor.Provider
 {
     public class UserProvider : IUserProvider
     {
+        private readonly IUserRepository userRepository;
+
         public UserProvider(IUserRepository userRepository)
         {
-            
+            this.userRepository = userRepository;
         }
-        public List<UserModel> GetUsers()
+        public IEnumerable<UserDto> GetLastUpdatedUsers(DateTime currentDateTime, int timeIntervalInMinutes)
         {
-            throw new NotImplementedException();
+            var users = userRepository.GetLastUpdatedUsers(currentDateTime, timeIntervalInMinutes);
+           
+            return Mapper.Map<IEnumerable<UserDto>>(users);
         }
     }
 }

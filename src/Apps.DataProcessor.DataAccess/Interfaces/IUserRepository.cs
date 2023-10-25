@@ -4,6 +4,6 @@ namespace Apps.DataProcessor.DataAccess.Interfaces
 {
     public interface IUserRepository
     {
-        IEnumerable<User> GetUsers();
+        IEnumerable<UserRecord> GetLastUpdatedUsers(DateTime currentDateTime, int timeIntervalInMinutes);
     }
 }

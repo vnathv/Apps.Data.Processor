@@ -2,7 +2,7 @@
 
 namespace Apps.Data.Processor.Infrastructure
 {
-    public class UserModel
+    public class UserDto
     {
         public int RecordId { get; set; }
 

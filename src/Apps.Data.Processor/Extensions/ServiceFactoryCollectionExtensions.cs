@@ -13,7 +13,7 @@ namespace Apps.Data.Processor.Extensions
     {
         public static void AddFactories(this IServiceCollection services)
         {
-            services.AddTransient<IUserDBContextFactory, UserDBContextFactory>();
+            //services.AddTransient<IUserDBContextFactory, UserDBContextFactory>();
         }
     }
 }

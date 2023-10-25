@@ -2,30 +2,33 @@
 using Apps.DataProcessor.DataAccess.Entities;
 using Apps.DataProcessor.DataAccess.Factories.Interfaces;
 using Apps.DataProcessor.DataAccess.Interfaces;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Apps.DataProcessor.DataAccess.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly IUserDBContextFactory userDBContextFactory;
-        private readonly string connectionString;
-        private UserDBContext userDBContext;
+        private readonly UserDBContext userDBContext;
 
-        public UserRepository(IUserDBContextFactory userDBContextFactory, string connectionString)
+        public UserRepository(UserDBContext userDBContext)
         {
-            this.userDBContextFactory = userDBContextFactory;
-            this.connectionString = connectionString;
+            this.userDBContext = userDBContext;
         }
 
-        private UserDBContext Context { get => userDBContext ?? (userDBContext = userDBContextFactory.Create(connectionString)); }
 
-        public IEnumerable<User> GetUsers()
+        
+
+        public IEnumerable<UserRecord> GetLastUpdatedUsers(DateTime currentDateTime, int timeIntervalInMinutes)
         {
-            var LastUpdatedDateTime = DateTime.Now.AddMinutes(-15);
+            var lastUpdatedDateTime = DateTime.Now.AddMinutes(-15);
 
-            var users = Context.Users
-                .FromSqlRaw($"EXECUTE dbo.GetMostPopularBlogsForUser {LastUpdatedDateTime}")
+            var users1 = userDBContext.Users.FirstOrDefault();
+
+            var param = new SqlParameter("@LastUpdatedDateTime", lastUpdatedDateTime);
+            var users = userDBContext.Users
+                .FromSqlRaw(@"exec dbo.GetUpdatedUsers @LastUpdatedDateTime", param)
                 .ToList();
 
             return users;

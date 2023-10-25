@@ -1,12 +1,13 @@
 ﻿CREATE PROCEDURE GetUpdatedUsers
-    @LastUpdatedDateTime DATETIME
+    @LastUpdatedDateTime DATETIME,
+    @TimeIntervalInMinutes int
 AS
 BEGIN
     SET NOCOUNT ON;
 
     -- Calculate the datetime 15 minutes ago
     DECLARE @FifteenMinutesAgo DATETIME
-    SET @FifteenMinutesAgo = DATEADD(MINUTE, -15, GETDATE())
+    SET @FifteenMinutesAgo = DATEADD(MINUTE, @TimeIntervalInMinutes, GETDATE())
 
     -- Select records based on LastUpdatedDateTime or CreatedDateTime
     SELECT 

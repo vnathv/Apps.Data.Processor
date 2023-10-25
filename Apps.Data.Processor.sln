@@ -77,6 +77,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{D5
 		DevOps\Build\Database\artifact.yaml = DevOps\Build\Database\artifact.yaml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apps.Dataprocessor.Common", "src\Apps.Dataprocessor.Common\Apps.Dataprocessor.Common.csproj", "{F0A7416E-8D84-4928-8AA4-62B1F1346EA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,10 @@ Global
 		{D0807C1A-D89A-4288-AE35-D59F543FC708}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0807C1A-D89A-4288-AE35-D59F543FC708}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D0807C1A-D89A-4288-AE35-D59F543FC708}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F0A7416E-8D84-4928-8AA4-62B1F1346EA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0A7416E-8D84-4928-8AA4-62B1F1346EA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0A7416E-8D84-4928-8AA4-62B1F1346EA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0A7416E-8D84-4928-8AA4-62B1F1346EA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
