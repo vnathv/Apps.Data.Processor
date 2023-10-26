@@ -13,7 +13,7 @@ BEGIN
 
     -- Set CreatedDateTime to current date and time
     DECLARE @CreatedDateTime DATETIME
-    SET @CreatedDateTime = GETDATE()
+    SET @CreatedDateTime = GETUTCDATE()
 
     -- Insert data into the table
     INSERT INTO UserRecord

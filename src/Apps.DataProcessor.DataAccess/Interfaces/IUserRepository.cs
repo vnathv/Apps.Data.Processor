@@ -1,9 +1,10 @@
-﻿using Apps.DataProcessor.DataAccess.Entities;
+﻿using Apps.Data.Processor.Infrastructure;
+using Apps.DataProcessor.DataAccess.Entities;
 
 namespace Apps.DataProcessor.DataAccess.Interfaces
 {
     public interface IUserRepository
     {
-        IEnumerable<UserRecord> GetLastUpdatedUsers(DateTime currentDateTime, int timeIntervalInMinutes);
+        Task<IEnumerable<UserModel>> GetLastUpdatedUsers(int timeIntervalInMinutes);
     }
 }

@@ -14,7 +14,7 @@
 )
 GO
 
-ALTER TABLE [dbo].[UserRecord] ADD  CONSTRAINT [DF_UserRecord_LastUpdatedDateTime]  DEFAULT (getdate()) FOR [LastUpdatedDateTime]
+ALTER TABLE [dbo].[UserRecord] ADD  CONSTRAINT [DF_UserRecord_LastUpdatedDateTime]  DEFAULT (GETUTCDATE()) FOR [LastUpdatedDateTime]
 GO
 ALTER TABLE [dbo].[UserRecord] ADD  CONSTRAINT [DF_UserRecord_NotificationFlag]  DEFAULT (0) FOR [NotificationFlag]
 GO

@@ -14,11 +14,11 @@ namespace Apps.Data.Processor.Provider
         {
             this.userRepository = userRepository;
         }
-        public IEnumerable<UserDto> GetLastUpdatedUsers(DateTime currentDateTime, int timeIntervalInMinutes)
+        public async Task<IEnumerable<UserModel>> GetLastUpdatedUsers(int timeIntervalInMinutes)
         {
-            var users = userRepository.GetLastUpdatedUsers(currentDateTime, timeIntervalInMinutes);
-           
-            return Mapper.Map<IEnumerable<UserDto>>(users);
+            var users = await userRepository.GetLastUpdatedUsers(timeIntervalInMinutes);
+
+            return users;
         }
     }
 }

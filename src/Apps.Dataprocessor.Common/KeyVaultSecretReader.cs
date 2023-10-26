@@ -28,8 +28,14 @@ namespace Apps.Dataprocessor.Common
                  }
             };
 
-            var credential = new ChainedTokenCredential(new ManagedIdentityCredential(),
-                                     new VisualStudioCredential(new VisualStudioCredentialOptions { TenantId = configuration["TenantId"] }));
+            var credential = new ChainedTokenCredential( 
+                new ManagedIdentityCredential(),
+                new VisualStudioCredential(new VisualStudioCredentialOptions { TenantId = configuration["TenantId"] }),
+                new DefaultAzureCredential(
+                new DefaultAzureCredentialOptions
+                {
+                    ManagedIdentityClientId = configuration["UserAssignedManagedIdentityClientId"]
+                }));
 
             var client = new SecretClient(new Uri(secretLocationUri), credential, options);
 

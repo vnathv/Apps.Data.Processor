@@ -1,11 +1,14 @@
 ﻿using Apps.Data.Processor;
 using Apps.Data.Processor.Extensions;
-using Apps.Data.Processor.Provider.MappingProfiles;
 using Apps.Dataprocessor.Common;
 using Apps.Dataprocessor.Common.Interfaces;
+using Apps.Dataprocessor.Servicebus.Publisher.Factories;
+using Apps.Dataprocessor.Servicebus.Publisher.Interfaces;
+using Apps.Dataprocessor.Servicebus.Publisher.Queue;
 using Apps.DataProcessor.DataAccess.DBContext;
 using Apps.DataProcessor.DataAccess.Factories.Interfaces;
 using Apps.DataProcessor.DataAccess.Interfaces;
+using Apps.DataProcessor.DataAccess.MappingProfiles;
 using Apps.DataProcessor.DataAccess.Repositories;
 using AutoMapper;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
@@ -37,6 +40,8 @@ namespace Apps.Data.Processor
             builder.Services.AddProviders();
             builder.Services.AddTransient<ISecretReader,KeyVaultSecretReader>();
             builder.Services.AddTransient<IUserRepository, UserRepository>();
+            builder.Services.AddTransient<IServiceBusMessagePublisher, ServieBusQueuePublisher>();
+            builder.Services.AddTransient<IServiceBusSenderFactory, ServiceBusSenderFactory>();
 
             var keyVaultReader = builder.Services.BuildServiceProvider().GetService<ISecretReader>();
 

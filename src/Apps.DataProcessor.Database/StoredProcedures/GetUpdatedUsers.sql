@@ -1,5 +1,4 @@
 ﻿CREATE PROCEDURE GetUpdatedUsers
-    @LastUpdatedDateTime DATETIME,
     @TimeIntervalInMinutes int
 AS
 BEGIN
@@ -7,7 +6,7 @@ BEGIN
 
     -- Calculate the datetime 15 minutes ago
     DECLARE @FifteenMinutesAgo DATETIME
-    SET @FifteenMinutesAgo = DATEADD(MINUTE, @TimeIntervalInMinutes, GETDATE())
+    SET @FifteenMinutesAgo = DATEADD(MINUTE, @TimeIntervalInMinutes, GETUTCDATE())
 
     -- Select records based on LastUpdatedDateTime or CreatedDateTime
     SELECT 
@@ -22,7 +21,5 @@ BEGIN
     FROM 
         dbo.[UserRecord]
     WHERE 
-        (LastUpdatedDateTime >= @LastUpdatedDateTime AND LastUpdatedDateTime >= @FifteenMinutesAgo)
-        OR 
-        (CreatedDateTime >= @LastUpdatedDateTime AND CreatedDateTime >= @FifteenMinutesAgo);
+        (LastUpdatedDateTime >= @FifteenMinutesAgo)
 END

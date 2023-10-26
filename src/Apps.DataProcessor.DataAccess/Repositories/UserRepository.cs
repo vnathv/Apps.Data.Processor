@@ -1,10 +1,8 @@
-﻿using Apps.DataProcessor.DataAccess.DBContext;
-using Apps.DataProcessor.DataAccess.Entities;
-using Apps.DataProcessor.DataAccess.Factories.Interfaces;
+﻿using Apps.Data.Processor.Infrastructure;
+using Apps.DataProcessor.DataAccess.DBContext;
 using Apps.DataProcessor.DataAccess.Interfaces;
-using Microsoft.Data.SqlClient;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Apps.DataProcessor.DataAccess.Repositories
 {
@@ -16,22 +14,33 @@ namespace Apps.DataProcessor.DataAccess.Repositories
         {
             this.userDBContext = userDBContext;
         }
-
-
         
 
-        public IEnumerable<UserRecord> GetLastUpdatedUsers(DateTime currentDateTime, int timeIntervalInMinutes)
+        public async Task<IEnumerable<UserModel>> GetLastUpdatedUsers(int timeIntervalInMinutes)
         {
-            var lastUpdatedDateTime = DateTime.Now.AddMinutes(-15);
+            //COMMENT OUT LINE 25-34 IF NOT USING STORED PROCEDURE. FROMRAWSQL WON'R WORK WITH EF INMEMORY DATA FOR UNIT TEST
 
-            var users1 = userDBContext.Users.FirstOrDefault();
+            //string timeIntervalParameter = "@TimeIntervalInMinutes";
 
-            var param = new SqlParameter("@LastUpdatedDateTime", lastUpdatedDateTime);
-            var users = userDBContext.Users
-                .FromSqlRaw(@"exec dbo.GetUpdatedUsers @LastUpdatedDateTime", param)
-                .ToList();
+            //var timeIntervalParam = new SqlParameter(timeIntervalParameter, timeIntervalInMinutes);
+            
+            //var users = await userDBContext.Users
+            //    .FromSqlRaw($"exec {StoredProcedureName.GetUpdatedUsers} {timeIntervalParameter}", timeIntervalParam)
+            //    .ToListAsync();
 
-            return users;
+            //return Mapper.Map<IEnumerable<UserModel>>(users);
+
+            //BELOW LOGIC IS FOR NOT STORED PROCEDURE
+
+            DateTime currentDateTime = DateTime.Now;
+            DateTime timeInterval = currentDateTime.AddMinutes(timeIntervalInMinutes);
+
+            var userRecords = await userDBContext
+                                    .Users
+                                    .Where(a => a.LastUpdatedDateTime >= timeInterval && a.LastUpdatedDateTime <= currentDateTime)
+                                    .ToListAsync();
+
+            return Mapper.Map<IEnumerable<UserModel>>(userRecords);
         }
     }
 }

@@ -9,6 +9,6 @@ namespace Apps.Data.Processor.Provider.Interface
 {
     public interface IUserProvider
     {
-        IEnumerable<UserDto> GetLastUpdatedUsers(DateTime currentDateTime, int timeIntervalInMinutes);
+        Task<IEnumerable<UserModel>> GetLastUpdatedUsers(int timeIntervalInMinutes);
     }
 }

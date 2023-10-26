@@ -13,6 +13,7 @@
     <ProjectReference Include="..\Apps.Data.Processor.DtoContracts\Apps.Data.Processor.Infrastructure.csproj" />
     <ProjectReference Include="..\Apps.Data.Processor.Provider\Apps.Data.Processor.Provider.csproj" />
     <ProjectReference Include="..\Apps.DataProcessor.DataAccess\Apps.DataProcessor.DataAccess.csproj" />
+    <ProjectReference Include="..\Apps.Dataprocessor.Servicebus.Publisher\Apps.Dataprocessor.Servicebus.Publisher.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="appsettings.json">

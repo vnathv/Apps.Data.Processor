@@ -10,6 +10,6 @@ namespace Apps.DataProcessor.DataAccess.DBContext
             
         }
 
-        internal DbSet<UserRecord> Users { get; set; }
+        public DbSet<UserRecord> Users { get; set; }
     }
 }

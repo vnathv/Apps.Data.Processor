@@ -1,8 +1,10 @@
 using System;
+using System.Linq;
+using System.Threading.Tasks;
 using Apps.Data.Processor.Provider.Interface;
-using Apps.DataProcessor.DataAccess.Repositories;
+using Apps.Dataprocessor.Servicebus.Publisher.Interfaces;
 using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Host;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace Apps.Data.Processor
@@ -10,17 +12,37 @@ namespace Apps.Data.Processor
     public class DataProcessor
     {
         private readonly IUserProvider userProvider;
+        private readonly IConfiguration configuration;
+        private readonly IServiceBusMessagePublisher serviceBusMessagePublisher;
 
-        public DataProcessor(IUserProvider userProvider)
+        public DataProcessor(IUserProvider userProvider, IConfiguration configuration, IServiceBusMessagePublisher serviceBusMessagePublisher)
         {
             this.userProvider = userProvider;
+            this.configuration = configuration;
+            this.serviceBusMessagePublisher = serviceBusMessagePublisher;
         }
         [FunctionName("DataProcessor")]
-        public void Run([TimerTrigger("*/10 * * * * *")]TimerInfo myTimer, ILogger log)
+        public async Task Run([TimerTrigger("*/10 * * * * *")] TimerInfo myTimer, ILogger log)
         {
             log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
 
-            var users = userProvider.GetLastUpdatedUsers(DateTime.Now, -15);            
+            _ = int.TryParse(configuration["DataRetrievalWindowInMinutes"], out int dataRetrievalWindowInMinutes);
+
+            var users = await userProvider.GetLastUpdatedUsers(dataRetrievalWindowInMinutes);
+
+            if (users.Any())
+            {
+                await serviceBusMessagePublisher.PublishMessageAsync(users);
+            }
+            else
+            {
+                log.LogInformation($"No new/updated records found with the last {dataRetrievalWindowInMinutes * -1} minutes!");
+            }
+
         }
+
+
     }
+
+
 }
