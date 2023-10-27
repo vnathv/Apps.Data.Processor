@@ -1,10 +1,19 @@
 variables:
-  BuildConfiguration: 'release'
-  BuildPlatform: 'any cpu'
-  SolutionName: 'Apps.Data.Processor'
-  ProjectName: 'Apps.Data.Processor'
-  Subject: 'AppsDataProcessor'
-  TestCategory: 'CI'
+  - name: BuildConfiguration
+    value: 'release'
+  - name: BuildPlatform
+    value: 'any cpu'
+  - name: SolutionName
+    value: 'Apps.Data.Processor'
+  - name: ProjectName
+    value: 'Apps.Data.Processor'
+  - name: Subject
+    value: 'AppsDataProcessor'
+  - name: TestCategory
+    value: 'CI'
+  
+  - group: 'Dev'
+
 
 # Clear Before Build
 resources:
@@ -96,7 +105,7 @@ stages:
           - task: AzureFunctionApp@2
             displayName: 'Function App Deploy'
             inputs:
-              connectedServiceNameARM: 'Vijay'
+              connectedServiceNameARM: '$(DevelopmentSubscription)'
               appType: 'functionApp'
               appName: 'vi-dataprocessor-dev-we'
               package: '$(Pipeline.Workspace)/drop/*.zip'
