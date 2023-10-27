@@ -102,7 +102,7 @@ stages:
 
              - task: SqlAzureDacpacDeployment@1
                inputs:
-                 azureSubscription: 'Vijay'
+                 azureSubscription: '$(DevelopmentSubscription)'
                  AuthenticationType: 'server'
                  ServerName: '$(SqlServerName)'
                  DatabaseName: '$(Database)'
