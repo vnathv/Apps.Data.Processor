@@ -22,9 +22,9 @@ namespace Apps.Data.Processor
             this.serviceBusMessagePublisher = serviceBusMessagePublisher;
         }
         [FunctionName("DataProcessor")]
-        public async Task Run([TimerTrigger("*/10 * * * * *")] TimerInfo myTimer, ILogger log)
+        public async Task Run([TimerTrigger("*/10 * * * * *")] TimerInfo myTimer, ILogger logger)
         {
-            log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
+            logger.LogInformation($"Data processor executed at: {DateTime.Now}");
 
             _ = int.TryParse(configuration["DataRetrievalWindowInMinutes"], out int dataRetrievalWindowInMinutes);
 
@@ -36,7 +36,7 @@ namespace Apps.Data.Processor
             }
             else
             {
-                log.LogInformation($"No new/updated records found with the last {dataRetrievalWindowInMinutes * -1} minutes!");
+                logger.LogInformation($"No new/updated records found with the last {dataRetrievalWindowInMinutes * -1} minutes!");
             }
 
         }

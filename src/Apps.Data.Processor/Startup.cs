@@ -6,7 +6,6 @@ using Apps.Dataprocessor.Servicebus.Publisher.Factories;
 using Apps.Dataprocessor.Servicebus.Publisher.Interfaces;
 using Apps.Dataprocessor.Servicebus.Publisher.Queue;
 using Apps.DataProcessor.DataAccess.DBContext;
-using Apps.DataProcessor.DataAccess.Factories.Interfaces;
 using Apps.DataProcessor.DataAccess.Interfaces;
 using Apps.DataProcessor.DataAccess.MappingProfiles;
 using Apps.DataProcessor.DataAccess.Repositories;
@@ -22,19 +21,19 @@ namespace Apps.Data.Processor
     public class Startup : FunctionsStartup
     {
 
-        public override void ConfigureAppConfiguration(IFunctionsConfigurationBuilder builder)
+        public override async void ConfigureAppConfiguration(IFunctionsConfigurationBuilder builder)
         {
-            var context = builder.GetContext();
+            var context = builder.GetContext();            
 
             builder.ConfigurationBuilder
                 .SetBasePath(context.ApplicationRootPath)
-                .AddJsonFile("appsettings.json").Build();
+                .AddJsonFile("appsettings.json")                
+                .Build();
         }
 
         public override void Configure(IFunctionsHostBuilder builder)
         {
-            var configuration = builder.Services.BuildServiceProvider().GetService<IConfiguration>();
-            
+            var configuration = builder.Services.BuildServiceProvider().GetService<IConfiguration>();            
 
             builder.Services.AddFactories();
             builder.Services.AddProviders();
@@ -50,6 +49,7 @@ namespace Apps.Data.Processor
             builder.Services.AddSingleton(CreateMapper());
         }
 
+       
         private static IMapper CreateMapper()
         {
             Mapper.Initialize(cfg =>

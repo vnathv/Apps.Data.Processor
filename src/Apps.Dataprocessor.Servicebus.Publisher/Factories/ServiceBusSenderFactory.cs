@@ -22,7 +22,7 @@ namespace Apps.Dataprocessor.Servicebus.Publisher.Factories
                 TransportType = ServiceBusTransportType.AmqpWebSockets
             };
 
-            ServiceBusClient serviceBusClient = new ServiceBusClient(keyvaultSecretReader.GetSecret(configuration["KeyVaultUrl"],configuration["ServiceBusConnectionString"]), clientOptions);
+            ServiceBusClient serviceBusClient = new ServiceBusClient(keyvaultSecretReader.GetSecret(configuration["KeyVaultUrl"],configuration["ServiceBusDataProcessorConnection"]), clientOptions);
 
             return serviceBusClient.CreateSender(configuration["ServiceBusQueueName"]);
         }
